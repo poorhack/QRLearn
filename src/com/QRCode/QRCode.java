@@ -7,9 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
-
 import javax.imageio.ImageIO;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
@@ -30,57 +28,18 @@ public class QRCode {
 
     /**
      * @param args
-     */
-    
+     */    
     public static void main(String[] args) {
     	String LogoPath="D://C338.png";
-        String Content="NAD C338 WiFi 11223344 BT 11223344 WiFi Otp 12344 Serial 1234r1324#";
+        String Content="NAD C338 WiFi 11223344 BT 11223344 WiFi Otp 12344 Serial 1234r1324#";    	
+//    	String Content=null;
+        String filePath = "D:\\MappingDetails.txt";
+        new readTxt().readTxtFile(filePath);
         QRCode test = new QRCode();
-        File file = new File("D://test.png");
-        /**
-         * 在com.google.zxing.MultiFormatWriter类中，定义了一些我们不知道的码,二维码只是其中的一种<br>
-         * public BitMatrix encode(String contents,
-                          BarcodeFormat format,
-                          int width, int height,
-                          Map<EncodeHintType,?> hints) throws WriterException {
-            Writer writer;
-            switch (format) {
-              case EAN_8:
-                writer = new EAN8Writer();
-                break;
-              case EAN_13:
-                writer = new EAN13Writer();
-                break;
-              case UPC_A:
-                writer = new UPCAWriter();
-                break;
-              case QR_CODE:  //这里是二维码
-                writer = new QRCodeWriter();
-                break;
-              case CODE_39:
-                writer = new Code39Writer();
-                break;
-              case CODE_128:  //这个可以生成
-                writer = new Code128Writer();
-                break;
-              case ITF:
-                writer = new ITFWriter();
-                break;
-              case PDF_417:  //这个可以生成
-                writer = new PDF417Writer();
-                break;
-              case CODABAR:
-                writer = new CodaBarWriter();
-                break;
-              default:
-                throw new IllegalArgumentException("No encoder available for format " + format);
-            }
-            return writer.encode(contents, format, width, height, hints);
-          }
-
-         */
+        File file = new File("D://test.png"); 
         test.encode(Content, file, BarcodeFormat.QR_CODE, 600, 600,LogoPath, null);
         test.decode(file);
+        
     }
 
     /**
